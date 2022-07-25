@@ -68,6 +68,20 @@ FFMPEG_CFG_FLAGS="$FFMPEG_CFG_FLAGS --enable-cross-compile"
 # Developer options (useful when working on FFmpeg itself):
 FFMPEG_CFG_FLAGS="$FFMPEG_CFG_FLAGS --disable-stripping"
 
+
+#lbg
+FFMPEG_CFG_FLAGS="$FFMPEG_CFG_FLAGS --enable-demuxer=h264"
+FFMPEG_CFG_FLAGS="$FFMPEG_CFG_FLAGS --enable-protocol=udp"
+FFMPEG_CFG_FLAGS="$FFMPEG_CFG_FLAGS --enable-decoder=h264"
+FFMPEG_CFG_FLAGS="$FFMPEG_CFG_FLAGS --enable-parser=h264"
+
+FFMPEG_CFG_FLAGS="$FFMPEG_CFG_FLAGS --enable-hwaccel=h264_vaapi"
+FFMPEG_CFG_FLAGS="$FFMPEG_CFG_FLAGS --enable-hwaccel=h264_dxva2"
+FFMPEG_CFG_FLAGS="$FFMPEG_CFG_FLAGS --enable-demuxer=mjpeg"
+FFMPEG_CFG_FLAGS="$FFMPEG_CFG_FLAGS --enable-demuxer=rtsp"
+FFMPEG_CFG_FLAGS="$FFMPEG_CFG_FLAGS --enable-demuxer=rtp"
+FFMPEG_CFG_FLAGS="$FFMPEG_CFG_FLAGS --enable-encoder=h264"
+
 ##
 FFMPEG_CFG_FLAGS="$FFMPEG_CFG_FLAGS --arch=$FF_ARCH"
 FFMPEG_CFG_FLAGS="$FFMPEG_CFG_FLAGS --target-os=$FF_TAGET_OS"

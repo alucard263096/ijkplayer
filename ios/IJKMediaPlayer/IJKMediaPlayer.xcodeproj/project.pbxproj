@@ -135,8 +135,6 @@
 		5450B03C1E63EA4300568494 /* IJKSDLHudViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = E68B7ACD1C1E97B0001DE241 /* IJKSDLHudViewCell.h */; };
 		5450B03D1E63EA4300568494 /* IJKVideoToolBox.h in Headers */ = {isa = PBXBuildFile; fileRef = 5407EC271DF7F93B00457BFE /* IJKVideoToolBox.h */; };
 		5450B03E1E63EA4300568494 /* NSString+IJKMedia.h in Headers */ = {isa = PBXBuildFile; fileRef = E69808991C7EB13A0048A46C /* NSString+IJKMedia.h */; };
-		5450B0451E63EAB700568494 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5450AF8B1E63E59300568494 /* libcrypto.a */; };
-		5450B0461E63EAB700568494 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5450AF8C1E63E59300568494 /* libssl.a */; };
 		5450B0471E63EABC00568494 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5450AF8F1E63E59800568494 /* libz.tbd */; };
 		549385C41E640456001AE08D /* IJKMediaFrameworkWithSSL.h in Headers */ = {isa = PBXBuildFile; fileRef = 5450AF9B1E63E65700568494 /* IJKMediaFrameworkWithSSL.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		54A029B61D4700E6001C61C1 /* ijkasync.c in Sources */ = {isa = PBXBuildFile; fileRef = 54A029B11D4700E6001C61C1 /* ijkasync.c */; };
@@ -295,8 +293,6 @@
 		5407EC281DF7F93B00457BFE /* IJKVideoToolBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IJKVideoToolBox.m; path = ijkmedia/ijkplayer/ios/pipeline/IJKVideoToolBox.m; sourceTree = "<group>"; };
 		5407EC2B1DF81D2600457BFE /* IJKVideoToolBoxSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IJKVideoToolBoxSync.h; path = ijkmedia/ijkplayer/ios/pipeline/IJKVideoToolBoxSync.h; sourceTree = "<group>"; };
 		5407EC2C1DF81D2600457BFE /* IJKVideoToolBoxSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IJKVideoToolBoxSync.m; path = ijkmedia/ijkplayer/ios/pipeline/IJKVideoToolBoxSync.m; sourceTree = "<group>"; };
-		5450AF8B1E63E59300568494 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "../../../.warehouse/ff3.2--ijk0.7.6--20170203--001/build/universal/lib/libcrypto.a"; sourceTree = "<group>"; };
-		5450AF8C1E63E59300568494 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = "../../../.warehouse/ff3.2--ijk0.7.6--20170203--001/build/universal/lib/libssl.a"; sourceTree = "<group>"; };
 		5450AF8F1E63E59800568494 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		5450AF9B1E63E65700568494 /* IJKMediaFrameworkWithSSL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IJKMediaFrameworkWithSSL.h; sourceTree = "<group>"; };
 		5450B0431E63EA4300568494 /* IJKMediaFrameworkWithSSL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IJKMediaFrameworkWithSSL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -486,9 +482,7 @@
 				704A11F1282E63C9000D966B /* libavfilter.a in Frameworks */,
 				704A11EB282E63C8000D966B /* libssl.a in Frameworks */,
 				5450B0471E63EABC00568494 /* libz.tbd in Frameworks */,
-				5450B0451E63EAB700568494 /* libcrypto.a in Frameworks */,
 				704A11F0282E63C9000D966B /* libavformat.a in Frameworks */,
-				5450B0461E63EAB700568494 /* libssl.a in Frameworks */,
 				704A11EF282E63C9000D966B /* libavutil.a in Frameworks */,
 				704A11ED282E63C9000D966B /* libswresample.a in Frameworks */,
 				5450B0181E63EA4300568494 /* libavcodec.a in Frameworks */,
@@ -681,8 +675,6 @@
 				704A11E7282E5DD4000D966B /* libcrypto.a */,
 				704A11E8282E5DD4000D966B /* libssl.a */,
 				5450AF8F1E63E59800568494 /* libz.tbd */,
-				5450AF8B1E63E59300568494 /* libcrypto.a */,
-				5450AF8C1E63E59300568494 /* libssl.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1414,7 +1406,7 @@
 		5450B0411E63EA4300568494 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = x86_64;
+				ARCHS = arm64;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
@@ -1471,7 +1463,7 @@
 		5450B0421E63EA4300568494 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = x86_64;
+				ARCHS = arm64;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
@@ -1686,7 +1678,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = arm64;
+				ARCHS = x86_64;
 				CLANG_ANALYZER_SECURITY_FLOATLOOPCOUNTER = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1727,7 +1719,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = arm64;
+				ARCHS = x86_64;
 				CLANG_ANALYZER_SECURITY_FLOATLOOPCOUNTER = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
