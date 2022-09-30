@@ -3136,6 +3136,8 @@ static int read_thread(void *arg)
     }
     is->ic = ic;
 
+    ic->debug |= FF_FDEBUG_TS;//added for enable TS debugging
+
     if (ffp->genpts)
         ic->flags |= AVFMT_FLAG_GENPTS;
 
@@ -3625,6 +3627,7 @@ static int read_thread(void *arg)
             if (!ffp->is_first && pkt->pts == pkt->dts) { // 获取开始录制前dts等于pts最后的值，用于
                 ffp->start_pts = pkt->pts;
                 ffp->start_dts = pkt->dts;
+                av_log(ffp, AV_LOG_DEBUG, "ffp_record_file~start %d,%d \n",ffp->start_pts,ffp->start_dts);
             }
             if (ffp->is_record) { // 可以录制时，写入文件
                 if (0 != ffp_record_file(ffp, pkt)) {
@@ -5190,21 +5193,30 @@ int ffp_record_file(FFPlayer *ffp, AVPacket *packet)
             
             if (!ffp->is_first) { // 录制的第一帧，时间从0开始
                 ffp->is_first = 1;
+                ffp->counter = 0;// 重置计数器
                 pkt->pts = 0;
                 pkt->dts = 0;
             } else { // 之后的每一帧都要减去，点击开始录制时的值，这样的时间才是正确的
-                pkt->pts = abs(pkt->pts - ffp->start_pts);
-                pkt->dts = abs(pkt->dts - ffp->start_dts);
+                //pkt->pts = abs(pkt->pts - ffp->start_pts);
+                //pkt->dts = abs(pkt->dts - ffp->start_dts);
+                pkt->pts = pkt->dts = ffp->counter*pkt->duration;// 因为获取不到pts和dts，所以用计数器自己算
             }
+            ffp->counter++;
             
             in_stream  = is->ic->streams[pkt->stream_index];
             out_stream = ffp->m_ofmt_ctx->streams[pkt->stream_index];
+//num,den
+            av_log(ffp, AV_LOG_DEBUG, "ffp_record_file %d,%d,%d,%d  \n",in_stream->time_base.num,in_stream->time_base.den,out_stream->time_base.num,out_stream->time_base.den);
+            
+            av_log(ffp, AV_LOG_DEBUG, "ffp_record_file_counter %d,%d,%d \n",pkt->pts,pkt->dts,ffp->counter);
             
             // 转换PTS/DTS
             pkt->pts = av_rescale_q_rnd(pkt->pts, in_stream->time_base, out_stream->time_base, (AV_ROUND_NEAR_INF|AV_ROUND_PASS_MINMAX));
             pkt->dts = av_rescale_q_rnd(pkt->dts, in_stream->time_base, out_stream->time_base, (AV_ROUND_NEAR_INF|AV_ROUND_PASS_MINMAX));
             pkt->duration = av_rescale_q(pkt->duration, in_stream->time_base, out_stream->time_base);
             pkt->pos = -1;
+
+            av_log(ffp, AV_LOG_DEBUG, "ffp_record_file2 %d,%d,%d \n",pkt->pts,pkt->dts,pkt->duration);
             
             // 写入一个AVPacket到输出文件
             if ((ret = av_interleaved_write_frame(ffp->m_ofmt_ctx, pkt)) < 0) {

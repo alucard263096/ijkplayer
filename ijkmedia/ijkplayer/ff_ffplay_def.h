@@ -440,7 +440,7 @@ static int av_sync_type = AV_SYNC_AUDIO_MASTER;
 static int64_t start_time = AV_NOPTS_VALUE;
 static int64_t duration = AV_NOPTS_VALUE;
 static int fast = 0;
-static int genpts = 0;
+static int genpts = 1;
 static int lowres = 0;
 static int decoder_reorder_pts = -1;
 static int autoexit;
@@ -730,7 +730,7 @@ typedef struct FFPlayer {
     int is_first;                       // 第一帧数据
     int64_t start_pts;                  // 开始录制时pts
     int64_t start_dts;                  // 开始录制时dts
-
+    int64_t counter;                    // 对接收到的包进行计数
 } FFPlayer;
 
 #define fftime_to_milliseconds(ts) (av_rescale(ts, 1000, AV_TIME_BASE))
